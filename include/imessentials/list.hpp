@@ -5,10 +5,11 @@
 
 namespace imessentials {
 
-template<typename List, typename EachItemCallback, typename AddCallback, typename RemoveCallback>
+template<typename List,
+         typename EachItemCallback, typename AddCallback, typename RemoveCallback>
 void list_edit(
-    const char *label, List &list, EachItemCallback &&on_each_item,
-    AddCallback &&on_added, RemoveCallback &&on_removed) {
+    const char *label, List &list,
+    EachItemCallback &&on_each_item, AddCallback &&on_added, RemoveCallback &&on_removed) {
     ImGui::PushID(label);
     ImGui::Text(label);
 
@@ -34,6 +35,13 @@ void list_edit(
         on_added();
     }
     ImGui::PopID();
+}
+
+template<typename List,
+         typename EachItemCallback, typename AddCallback>
+void list_edit(const char *label, List &list,
+               EachItemCallback &&on_each_item, AddCallback &&on_added) {
+    list_edit(label, list, on_each_item, on_added, [](int, auto &) {});
 }
 
 } // namespace imessentials
