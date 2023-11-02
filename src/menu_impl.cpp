@@ -2,7 +2,6 @@
 
 #include <imgui.h>
 
-#include <nodec/logging.hpp>
 #include <nodec/macros.hpp>
 
 #include <functional>

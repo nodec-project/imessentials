@@ -1,9 +1,9 @@
 #ifndef IMESSENTIALS__IMPL__WINDOW_IMPL_HPP_
 #define IMESSENTIALS__IMPL__WINDOW_IMPL_HPP_
 
-#include <imessentials/window.hpp>
+#include <nodec/logging/logging.hpp>
 
-#include <nodec/logging.hpp>
+#include <imessentials/window.hpp>
 
 namespace imessentials {
 namespace impl {
@@ -45,12 +45,12 @@ private:
         try {
             throw;
         } catch (std::exception &e) {
-            nodec::logging::ErrorStream(__FILE__, __LINE__)
+            nodec::logging::error(__FILE__, __LINE__)
                 << "An exception was thrown in '" << name << "'\n"
                 << "details: \n"
                 << e.what();
         } catch (...) {
-            nodec::logging::ErrorStream(__FILE__, __LINE__)
+            nodec::logging::error(__FILE__, __LINE__)
                 << "An unknown exception was thrown in '" << name;
         }
     }
